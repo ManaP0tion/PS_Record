@@ -1,11 +1,14 @@
 #include <iostream>
 #include <string>
 using namespace std;
-int main() {
-    string s;
+
+int main(){
+    string word;
     string alphabet = "abcdefghijklmnopqrstuvwxyz";
-    cin >> s;
-    for(int i = 0; i < alphabet.length(); i++)
-        cout << (int)s.find(alphabet[i]) << " ";
-    return 0;
+    cin >> word;
+
+    for(int i=0; i<26; i++){
+        cout << (int)word.find(alphabet[i]) << " ";
+    }
 }
+
