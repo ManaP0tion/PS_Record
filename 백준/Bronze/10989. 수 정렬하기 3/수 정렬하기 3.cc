@@ -1,22 +1,18 @@
-#include<stdio.h>
+#include <iostream>
+using namespace std;
 
-int main(){
-	int N;
-	int i, j;
-	int num;
+int main() {
+    ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+	int n;
+	cin >> n;
+	int array[10001] = { 0, };
 	
-	int count[10001]={0,};
-	scanf("%d", &N);
-	
-	for(i=0; i<N ;i++){
-		scanf("%d", &num);
-		count[num] = count[num] + 1; //숫자 카운트  
+	for (int i = 0; i < n; i++) {
+		int temp;
+		cin >> temp;
+		array[temp] += 1;
 	}
-	
-	for(i=1; i<10001; i++){
-		for(j=1; j<=count[i]; j++){ //숫자만큼 반복 출력 
-			printf("%d\n", i);
-		}
-	}
-	return 0;
+	for (int i = 1; i <= 10000; i++)
+		for (int j = 0; j < array[i]; j++)
+			cout << i << "\n";
 }
