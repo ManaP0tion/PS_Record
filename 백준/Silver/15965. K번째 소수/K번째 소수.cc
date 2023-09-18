@@ -2,8 +2,8 @@
 using namespace std;
 
 int main(){
-    int num = 500000;
-    int arr[500001] ={0, };
+    int num = 500001;
+    int arr[500002] ={0, };
     int count = 0;
 
     int input;
