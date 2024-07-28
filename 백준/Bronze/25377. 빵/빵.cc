@@ -8,7 +8,7 @@ int main(){
     int cnt = 0;
     while(n--){
         cin >> a >> b;
-        if(b > a){
+        if(b >= a){
             cnt++;
             if(b < min)
                 min = b;
