@@ -3,42 +3,40 @@
 #include <algorithm>
 using namespace std;
 
-vector<int> g[100001];
-int visited[100001] = {0, };
-int result[100001];
-int cnt = 0; 
-
-void dfs(int r){
-    if(visited[r] == 1)
-        return;
-
-    visited[r] = 1;
+vector<vector<int>> graph;
+vector<bool> visited;
+vector<int> result;
+int cnt = 1;
+void dfs(int node){
+    visited[node] = true;
+    result[node] = cnt;
     cnt++;
-    result[r] = cnt;
-
-    for(int i = 0; i<g[r].size(); i++){
-        dfs(g[r][i]);
+    for(int next : graph[node]){
+        if(!visited[next])
+            dfs(next);
     }
 }
-
 
 int main(){
     int n, m, r;
     cin >> n >> m >> r;
-    int a,b;
-    for(int i = 1; i<=m; i++){
-        cin >> a >> b;
-        g[a].push_back(b);
-        g[b].push_back(a);
+    graph.resize(n+1);
+    result.resize(n+1);
+    visited.resize(n+1, false);
+
+    int u, v;
+    for(int i = 0; i<m; i++){
+        cin >> u >> v;
+        graph[u].push_back(v);
+        graph[v].push_back(u);
     }
 
     for(int i = 1; i<=n; i++)
-        sort(g[i].begin(), g[i].end());
-    
+        sort(graph[i].begin(), graph[i].end());
+
     dfs(r);
 
-    for(int i = 1; i<=n; i++){
+    for(int i = 1; i<=n; i++)
         cout << result[i] << "\n";
-    }
     
 }
