@@ -1,19 +1,28 @@
 import sys
 input = sys.stdin.readline
 
-while True:
-    n = int(input())
+def kadane(arr):
+    if not arr:
+        return 0
     
-    if n == 0:
+    curr_sum = total_sum = arr[0]
+    
+    for i in range(1, len(arr)):
+        curr_sum = max(curr_sum + arr[i], arr[i])
+        total_sum = max(total_sum, curr_sum)
+    return total_sum
+
+
+
+while True:
+    N = int(input())
+    if N == 0:
         break
     
     arr = []
-    for _ in range(n):
+    for _ in range(N):
         arr.append(int(input()))
-    dp = [0 for _ in range(n)]
-    
-    dp[0] = arr[0]
-    
-    for i in range(1, n):
-        dp[i] = max(dp[i-1] + arr[i], arr[i])
-    print(max(dp))
+    ans = kadane(arr)
+    print(ans)
+
+
