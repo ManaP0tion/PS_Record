@@ -1,14 +1,15 @@
-for testcase in range(1, 11):
+T = 10
+
+for testcase in range(1, T+1):
+    ans = 0
     N = int(input())
-    building = list(map(int, input().split()))
-    result = 0
+    arr = list(map(int, input().split()))
     
-    # 문제의 조건: 맨 앞과 맨뒤에는 건물이 안지어짐
     for i in range(2, N-2):
-        leftside = max(building[i-2], building[i-1])
-        rightside = max(building[i+2], building[i+1])
-        highest = max(leftside, rightside)
-        
-        if building[i] > highest:
-            result += building[i] - highest
-    print(f'#{testcase} {result}')
+        left = max(arr[i-2], arr[i-1])
+        right = max(arr[i+1], arr[i+2])
+        lr_max = max(left, right)
+        if arr[i] > lr_max:
+            ans += arr[i] - lr_max
+    
+    print(f"#{testcase} {ans}")
