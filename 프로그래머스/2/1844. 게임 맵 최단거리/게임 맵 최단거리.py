@@ -1,36 +1,27 @@
 from collections import deque
 
 def solution(maps):
+    answer = 0
+    N = len(maps)
+    M = len(maps[0])
     
-    n = len(maps)
-    m = len(maps[0])
+    visited = [[False] * M for _ in range(N)]
+    q = deque()
+    q.append((0, 0, 1)) #(행, 열, 거리)
     
     dx = [-1, 1, 0, 0]
     dy = [0, 0, -1, 1]
     
-    q = deque([(0, 0)])
-    
     while q:
-        cx, cy = q.popleft()
+        x, y, dist = q.popleft()
+        if x == N-1 and y == M-1:
+            return dist
         
-        for next in range(4):
-            nx, ny = cx + dx[next], cy + dy[next]
-            
-            # nx, ny 범위 내 + 이동가능(1)인 경우        
-            if 0 <= nx < n and 0 <= ny < m and maps[nx][ny] == 1:
-                if nx == 0 and ny == 0:
-                    continue
-                    
-                maps[nx][ny] = maps[cx][cy] + 1
-                q.append((nx, ny))
-                
-    ans = maps[n-1][m-1]
-    if ans > 1:
-        return ans
-    else:
-        return -1
-            
+        for i in range(4):
+            nx, ny = x + dx[i], y + dy[i]
+        
+            if 0<=nx<N and 0<=ny<M and not visited[nx][ny] and maps[nx][ny] ==1:
+                visited[nx][ny] = True
+                q.append((nx, ny, dist+1))
     
-    
-    
-    
+    return -1
