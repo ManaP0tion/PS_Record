@@ -1,34 +1,24 @@
-import math
+#include <iostream>
+using namespace std;
 
-T = int(input())
-for testcase in range(1, T+1):
-    
-    arr = [2,3,5,7,11]
-    ans = []
-    N = int(input())
-    
-    for i in range(5):
-        div = arr[i]
-        cnt = 0
-        flag = True
-        
-        while flag:
-            if N%div != 0:
-                flag = False
-                
-            else:
-                N = N // div
-                cnt += 1
-                
-        ans.append(cnt)
-    print(f"#{testcase} ", end="")        
-    print(*ans)
-        
-    
-    
-    
-    
-    
+int T, n;
+int arr[5] = {11, 7, 5, 3 ,2};
 
-
-
+int main(){
+    cin >> T;
+    for(int tc = 1; tc<=T; tc++){
+        int ans[5] = {0};
+        cin >> n;
+        for(int i =0; i<5; i++){
+            
+            while(n%arr[i] == 0){
+                n /= arr[i];
+                ans[i]++;
+            }
+        }
+        cout << "#" << tc<< " ";
+        for(int i=4; i>=0; i--)
+            cout << ans[i] << " ";
+        cout << endl;
+    }
+}
